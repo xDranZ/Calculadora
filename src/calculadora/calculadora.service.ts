@@ -10,4 +10,8 @@ export class CalculadoraService {
     if (numeros.length === 0) return 0;
     return numeros.reduce((acc, curr) => acc - curr);
   }
+
+  multiplicar(numeros: number[]): number {
+    return numeros.reduce((acc, curr) => acc * curr, 1);
+  }
 }

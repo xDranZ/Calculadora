@@ -23,4 +23,10 @@ export class CalculadoraController {
   restar(@Query() query: NumerosDto) {
     return this.calculadoraService.restar(query.numeros);
   }
+
+  @Get('multiplicar')
+  @UsePipes(ValidationPipe)
+  multiplicar(@Query() query: NumerosDto) {
+    return this.calculadoraService.multiplicar(query.numeros);
+  }
 }

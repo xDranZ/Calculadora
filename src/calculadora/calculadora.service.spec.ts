@@ -41,4 +41,22 @@ describe('CalculadoraService', () => {
       expect(resultado).toBe(5);
     });
   });
+
+  describe('multiplicar', () => {
+    it('debería multiplicar dos números', () => {
+      expect(calculadoraService.multiplicar([2, 3])).toBe(6);
+    });
+
+    it('debería multiplicar varios números', () => {
+      expect(calculadoraService.multiplicar([1, 2, 3, 4])).toBe(24);
+    });
+
+    it('debería retornar 1 cuando la entrada es un array vacío', () => {
+      expect(calculadoraService.multiplicar([])).toBe(1);
+    });
+
+    it('debería retornar 0 si hay un cero en la entrada', () => {
+      expect(calculadoraService.multiplicar([0, 1, 2, 3])).toBe(0);
+    });
+  });
 });
