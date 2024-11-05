@@ -15,18 +15,12 @@ export class CalculadoraController {
   @Get('sumar')
   @UsePipes(ValidationPipe)
   sumar(@Query() query: NumerosDto) {
-    const numerosArray = this.calculadoraService.transformarNumeros(
-      query.numeros,
-    );
-    return this.calculadoraService.sumar(numerosArray);
+    return this.calculadoraService.sumar(query.numeros);
   }
 
   @Get('restar')
   @UsePipes(ValidationPipe)
   restar(@Query() query: NumerosDto) {
-    const numerosArray = this.calculadoraService.transformarNumeros(
-      query.numeros,
-    );
-    return this.calculadoraService.restar(numerosArray);
+    return this.calculadoraService.restar(query.numeros);
   }
 }

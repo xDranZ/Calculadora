@@ -1,11 +1,16 @@
-import { IsString, Matches, IsNotEmpty } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsArray, IsNumber, ArrayMinSize } from 'class-validator';
 
 export class NumerosDto {
-  @IsString({ message: 'El parámetro "numeros" debe ser una cadena de texto' })
-  @IsNotEmpty({ message: 'La cadena de números no debe estar vacía' })
-  @Matches(/^[0-9]+(\.[0-9]+)?,[0-9]+(\.[0-9]+)?(,[0-9]+(\.[0-9]+)?)*$/, {
-    message:
-      'El String debe contener al menos dos números separados por comas (Las letras no son permitidas)',
+  @Transform(({ value }) => {
+    // Nota: Por alguna razon, entra dos veces, una como string y otra como array.
+    if (typeof value === 'string') {
+      return value.split(',').map(Number);
+    }
+    return value;
   })
-  numeros: string;
+  @IsArray()
+  @IsNumber({}, { each: true })
+  @ArrayMinSize(2)
+  numeros: number[];
 }
